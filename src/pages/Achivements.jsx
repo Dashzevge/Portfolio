@@ -1,3 +1,4 @@
+import  React from 'react'
 import {ACHIVEMENTS} from "../constants"
 
 const Achivements = () => {

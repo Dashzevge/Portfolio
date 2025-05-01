@@ -2,7 +2,7 @@ import React from 'react'
 import {HERO_CONTENT} from '../constants' 
 import profilePic from '../assets/kevinRushProfile.png'
 
-const Hero = () => {
+const Home = () => {
   return (
     <div className='border-b border-neutral-900 pb-4 lg:mb-35'>
         <div className='flex flex-wrap'> 
@@ -27,4 +27,4 @@ const Hero = () => {
   )
 }  
 
-export default Hero
+export default Home

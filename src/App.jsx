@@ -1,7 +1,10 @@
 import React from "react";
-//import Navbar from "./components/Navbar";
-import { Routes, Route, Link } from 'react-router-dom';
-import About from "./pages/About";
+import Navbar from "./components/Navbar";
+import { Routes, Route} from 'react-router-dom';
+import Home from "./pages/Home";
+import Projects from "./pages/Projects";
+import Skills from "./pages/Skills";
+import Achivements from "./pages/Achivements"
 
 const App = () => {
   return (
@@ -15,11 +18,13 @@ const App = () => {
       <div className="container mx-auto px-8">
         <div>
           <nav>
-            <Link to="/">Home</Link> | <Link to="/about">About</Link>
+            <Navbar />
           </nav>
           <Routes>
-            {/* <Route path="/" element={<Home />} /> */}
-            <Route path="/about" element={<About />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/achivements" element={<Achivements />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/skills" element={<Skills />} />
           </Routes>
         </div>
       </div>
