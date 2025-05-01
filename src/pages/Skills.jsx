@@ -1,43 +1,64 @@
-import React from 'react'
-import { RiReactjsLine } from 'react-icons/ri'
-import { SiMongodb } from 'react-icons/si'
-import { FaNodeJs } from 'react-icons/fa'
-import { SiPostgresql } from 'react-icons/si'
-import { RiAngularjsLine } from 'react-icons/ri'
-import { FaJava } from 'react-icons/fa'
-import { SiSpring } from 'react-icons/si'
+import React, { useState } from 'react';
+import Skill from '../components/Skill';
+import { SKILLS } from '../constants/index';
 
-
+const groupFilters = ['All', 'Frontend', 'Backend', 'Database', 'DevOps','Cloud & Tools'];
 
 const Skills = () => {
-  return (
-    <div className='border-b border-neutral-800 pb-24'>
-        <h1 className='my-20 text-center text-4xl'>Skills</h1>
-        <div className='flex flex-wrap items-center justify-center gap-4'>
-            <div className='rounded-2xl border-4 border-neutral-800 p-4'>
-                <RiReactjsLine className='text-7xl text-cyan-400'/>
-            </div>
-            <div className='rounded-2xl border-4 border-neutral-800 p-4'>
-                <SiMongodb className='text-7xl text-green-700'/>
-            </div>
-            <div className='rounded-2xl border-4 border-neutral-800 p-4'>
-                <FaNodeJs className='text-7xl text-cyan-400'/>
-            </div>
-            <div className='rounded-2xl border-4 border-neutral-800 p-4'>
-                <SiPostgresql className='text-7xl text-cyan-400'/>
-            </div>
-            <div className='rounded-2xl border-4 border-neutral-800 p-4'>
-                <FaJava className='text-7xl text-cyan-400'/>
-            </div>
-            <div className='rounded-2xl border-4 border-neutral-800 p-4'>
-                <RiAngularjsLine className='text-7xl text-red-500'/>
-            </div>
-            <div className='rounded-2xl border-4 border-neutral-800 p-4'>
-                <SiSpring className='text-7xl text-green-900'/>
-            </div>
-        </div>
-    </div>
-  )
-}
+  const [search, setSearch] = useState('');
+  const [group, setGroup] = useState('All');
 
-export default Skills
+  const filteredSkills = SKILLS
+    .filter((skill) => {
+      const matchesSearch =
+        skill.label.toLowerCase().includes(search.toLowerCase()) ||
+        skill.description.toLowerCase().includes(search.toLowerCase());
+      const matchesGroup = group === 'All' || skill.group === group;
+      return matchesSearch && matchesGroup;
+    })
+    .sort((a, b) => b.years - a.years); // Descending by years
+
+  return (
+    <div className="border-b border-neutral-800 pb-24 px-4 max-w-4xl mx-auto">
+      <h1 className="my-10 text-center text-4xl">Skills</h1>
+
+      <input
+        type="text"
+        placeholder="Search by name..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        className="mb-6 w-full rounded-lg border border-neutral-700 bg-neutral-900 p-3 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+      />
+
+<div className="mb-6 overflow-x-auto whitespace-nowrap pb-2">
+  <div className="inline-flex gap-2">
+    {groupFilters.map((g) => (
+      <button
+        key={g}
+        onClick={() => setGroup(g)}
+        className={`px-4 py-2 rounded-full text-sm font-medium ${
+          group === g
+            ? 'bg-cyan-500 text-neutral-900'
+            : 'bg-neutral-800 text-white hover:bg-neutral-700'
+        } transition-colors`}
+      >
+        {g}
+      </button>
+    ))}
+  </div>
+</div>
+
+      {filteredSkills.length > 0 ? (
+        <div className="space-y-6">
+          {filteredSkills.map((skill, index) => (
+            <Skill key={index} {...skill} />
+          ))}
+        </div>
+      ) : (
+        <p className="text-center text-neutral-500">No matching skills found.</p>
+      )}
+    </div>
+  );
+};
+
+export default Skills;

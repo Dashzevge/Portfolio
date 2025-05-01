@@ -3,9 +3,67 @@ import project2 from "../assets/projects/project-2.jpg";
 import project3 from "../assets/projects/project-3.jpg";
 import project4 from "../assets/projects/project-4.jpg";
 
+import { RiReactjsLine, RiAngularjsLine } from 'react-icons/ri'
+import { SiMongodb, SiPostgresql, SiSpring } from 'react-icons/si'
+import { FaNodeJs, FaJava } from 'react-icons/fa'
+
 export const HERO_CONTENT = `I am a passionate Full Stack Developer with over 8 years of hands-on experience building robust, scalable, and user-centric web applications. I specialize in modern front-end technologies like Angular and React.js, and back-end development using Java, Node.js, MySQL, PostgreSQL, and MongoDB. My strength lies in designing and implementing end-to-end solutions that not only meet technical requirements but also align with strategic business goals. I thrive in fast-paced environments, particularly within the FinTech and Entertainment sectors, where I continuously leverage my expertise to drive innovation, enhance performance, and deliver seamless user experiences.`;
 
 export const ABOUT_TEXT = `I am a dedicated and versatile full stack developer with a passion for creating efficient and user-friendly web applications. With 5 years of professional experience, I have worked with a variety of technologies, including React, Next.js, Node.js, MySQL, PostgreSQL, and MongoDB. My journey in web development began with a deep curiosity for how things work, and it has evolved into a career where I continuously strive to learn and adapt to new challenges. I thrive in collaborative environments and enjoy solving complex problems to deliver high-quality solutions. Outside of coding, I enjoy staying active, exploring new technologies, and contributing to open-source projects.`;
+
+export const SKILLS =[
+    {
+      Icon: RiReactjsLine,
+      color: 'text-cyan-400',
+      label: 'React',
+      years: 4,
+      description: 'Developed SPAs with hooks, Redux, and component libraries',
+      group: 'Development'
+    },
+    {
+      Icon: SiMongodb,
+      color: 'text-green-700',
+      label: 'MongoDB',
+      years: 3,
+      description: 'Designed schemas and optimized queries for NoSQL databases',
+    },
+    {
+      Icon: FaNodeJs,
+      color: 'text-cyan-400',
+      label: 'Node.js',
+      years: 4,
+      description: 'Built RESTful APIs and backend logic with Express.js',
+      group: 'Development'
+    },
+    {
+      Icon: SiPostgresql,
+      color: 'text-cyan-400',
+      label: 'PostgreSQL',
+      years: 3,
+      description: 'Wrote complex SQL queries, triggers, and views',
+    },
+    {
+      Icon: FaJava,
+      color: 'text-cyan-400',
+      label: 'Java',
+      years: 5,
+      description: 'Developed enterprise-grade applications with Java 8+',
+    },
+    {
+      Icon: RiAngularjsLine,
+      color: 'text-red-500',
+      label: 'Angular',
+      years: 3,
+      description: 'Built reactive UIs using Angular 14+ and RxJS',
+    },
+    {
+      Icon: SiSpring,
+      color: 'text-green-900',
+      label: 'Spring',
+      years: 4,
+      description: 'Built secure microservices with Spring Boot and Spring Security',
+    }
+];
 
 export const ACHIVEMENTS = [
   {
