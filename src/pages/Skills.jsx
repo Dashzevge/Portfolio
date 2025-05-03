@@ -1,15 +1,8 @@
 import React, { useState } from "react";
 import Skill from "../components/Skill";
 import { SKILLS } from "../constants/index";
+import { GROUP_NAMES } from "../constants/index";
 
-const groupFilters = [
-  "All",
-  "Frontend",
-  "Backend",
-  "Database",
-  "DevOps",
-  "Cloud & Tools",
-];
 
 const Skills = () => {
   const [search, setSearch] = useState("");
@@ -37,7 +30,7 @@ const Skills = () => {
         />
         <div className="w-full md:w-auto overflow-x-auto">
           <div className="inline-flex gap-2 whitespace-nowrap pr-2">
-            {groupFilters.map((g) => (
+            {GROUP_NAMES.map((g) => (
               <button
                 key={g}
                 onClick={() => setGroup(g)}
