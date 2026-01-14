@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import { FiDownload, FiMenu, FiX } from "react-icons/fi";
-import SocialLinks from "./SocialLinks";
 import ShootingStar from "./ShootingStar";
 
 const Navbar = () => {
@@ -101,11 +100,8 @@ const Navbar = () => {
           })}
         </div>
 
-        {/* Social + Resume */}
-        <div className="hidden md:flex items-center gap-4">
-          <div className="text-2xl">
-            <SocialLinks />
-          </div>
+        {/* Resume */}
+        <div className="hidden md:flex items-center">
           <motion.a
             href="/Dash Bumchin.pdf"
             download
@@ -184,9 +180,6 @@ const Navbar = () => {
                 variants={{ hidden: { opacity: 0, y: -6 }, visible: { opacity: 1, y: 0 } }}
                 className="mt-4 flex items-center gap-4"
               >
-                <div className="text-2xl">
-                  <SocialLinks />
-                </div>
                 <motion.a
                   href="/Dash Bumchin.pdf"
                   download

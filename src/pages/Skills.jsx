@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import Skill from "../components/Skill";
 import { GROUP_NAMES, SKILLS } from "../constants";
@@ -6,6 +7,15 @@ import { GROUP_NAMES, SKILLS } from "../constants";
 const Skills = () => {
   const [search, setSearch] = useState("");
   const [group, setGroup] = useState("All");
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    const searchQuery = searchParams.get("search");
+    if (searchQuery) {
+      setSearch(searchQuery);
+      setGroup("All");
+    }
+  }, [searchParams]);
 
   const filteredSkills = useMemo(() => {
     const normalizedSearch = search.trim().toLowerCase();

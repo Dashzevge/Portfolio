@@ -1,44 +1,58 @@
 import { ACHIEVEMENTS } from "../constants";
-import aboutImage from "../assets/about.jpg";
 
 const Achievements = () => {
   return (
-    <div className="border-b border-neutral-900 pb-4">
-        <h1 className="my-20 text-center text-4xl">Achievements</h1>
-        <div>
-          {ACHIEVEMENTS.map((achievement, index) => (
-            <div key={index} className="mb-8 flex flex-wrap lg:justify-center">
-              <div className="w-full lg:w-1/4">
-                <p className="mb-2 text-sm text-neutral-400">
-                  {achievement.year}
+    <div className="border-b border-neutral-900 pb-16">
+      <div className="mx-auto max-w-5xl px-6">
+        <div className="my-16 text-center">
+          <p className="text-sm uppercase tracking-[0.3em] text-neutral-500">
+            Career Timeline
+          </p>
+          <h1 className="mt-4 text-4xl font-semibold text-neutral-100">
+            Achievements
+          </h1>
+          <p className="mt-3 text-sm text-neutral-400">
+            A progression from junior developer to senior full stack leadership.
+          </p>
+        </div>
+        <div className="relative">
+          <div className="absolute left-3 top-0 h-full w-px bg-neutral-800" />
+          <div className="space-y-10">
+            {ACHIEVEMENTS.slice().reverse().map((achievement, index) => (
+              <div key={index} className="relative pl-10">
+                <span className="absolute left-0 top-2 h-6 w-6 rounded-full border border-cyan-400/40 bg-neutral-950 shadow-[0_0_12px_rgba(34,211,238,0.35)]" />
+                <div className="rounded-2xl border border-neutral-800 bg-neutral-950/70 p-6 backdrop-blur">
+                  <div className="flex flex-wrap items-center gap-2 text-xs text-neutral-400">
+                    <span className="rounded-full border border-neutral-700 px-2 py-1">
+                      {achievement.period}
+                    </span>
+                    <span className="rounded-full border border-neutral-700 px-2 py-1">
+                      {achievement.duration}
+                    </span>
+                    <span className="rounded-full border border-neutral-700 px-2 py-1">
+                      {achievement.employmentType}
+                    </span>
+                    <span className="rounded-full border border-neutral-700 px-2 py-1">
+                      {achievement.workMode}
+                    </span>
+                  </div>
+                  <h3 className="mt-4 text-lg font-semibold text-neutral-100">
+                    {achievement.title}
+                  </h3>
+                  <p className="text-sm text-neutral-300">
+                    {achievement.company}
                   </p>
+                  <p className="mt-2 text-sm text-neutral-500">
+                    {achievement.location}
+                  </p>
+                </div>
               </div>
-              <div className="w-full lg:w-1/4">
-                <img
-                  src={aboutImage}
-                  alt={achievement.role}
-                  className="h-16 w-16 rounded-full border border-neutral-800 justify-center"
-                />
-              </div>
-
-              <div className="w-full max-w-xl lg:w-3/4">
-                <h6 className="mb-2 font-semibold">
-                    {achievement.role} -{" "}
-                  <span className="text-sm text-purple-100">
-                    {achievement.company} 
-                  </span>
-                </h6>
-                <p className="mb-4 text-neutral-400">{achievement.description}</p>
-                {achievement.technologies.map((tech, index) => (
-                  <span key={index} className="mr-2 mt-4 rounded bg-neutral-900 px-2 py-1 text-sm font-medium text-purple-800">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div> 
-          ))}
-        </div>     
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
-  )
-}
-export default Achievements
+  );
+};
+
+export default Achievements;

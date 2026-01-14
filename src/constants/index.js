@@ -335,35 +335,42 @@ export const SKILLS = [
 
 export const ACHIEVEMENTS = [
   {
-    year: "2020 - Present",
-    role: "Senior Full Stack Developer",
-    company: "Google Inc.",
-    description: `Led a team in developing and maintaining web applications using JavaScript, React.js, and Node.js. Implemented RESTful APIs and integrated with MongoDB databases. Collaborated with stakeholders to define project requirements and timelines.`,
-    technologies: ["Javascript", "React.js", "Next.js", "mongoDB"],
+    period: "May 2015 - Dec 2016",
+    duration: "1 yr 8 mos",
+    title: "Junior Software Developer",
+    company: "Ministry of Finance of Mongolia",
+    employmentType: "Contract",
+    location: "Chingeltei, Ulaanbaatar, Mongolia",
+    workMode: "On-site",
   },
   {
-    year: "2016 - 2020",
-    role: "Full Stack Developer",
-    company: "Adobe",
-    description: `Designed and developed user interfaces for web applications using Next.js and React. Worked closely with backend developers to integrate frontend components with Node.js APIs. Implemented responsive designs and optimized frontend performance.`,
-    technologies: ["HTML", "CSS", "Vue.js", "mySQL"],
+    period: "Dec 2016 - Mar 2020",
+    duration: "3 yrs 4 mos",
+    title: "Full Stack Developer",
+    company: "Interactive LLC",
+    employmentType: "Full-time",
+    location: "Ulaanbaatar, Mongolia",
+    workMode: "On-site",
   },
   {
-    year: "2015 - 2016",
-    role: "Web Developer",
-    company: "Facebook",
-    description: `Developed and maintained web applications using JavaScript, React.js, and Node.js. Designed and implemented RESTful APIs for data communication. Collaborated with cross-functional teams to deliver high-quality software products on schedule.`,
-    technologies: ["Python", "Svelte", "Three.js", "Postgres"],
+    period: "Mar 2020 - Dec 2025",
+    duration: "5 yrs 10 mos",
+    title: "Senior Full Stack Developer",
+    company: "MongolSat Networks LLC",
+    employmentType: "Full-time",
+    location: "Chingeltei, Ulaanbaatar, Mongolia",
+    workMode: "Remote",
   }
 ];
 
 export const PROJECTS = [
   {
-    title: "E-Commerce Website",
+    title: "MongolSat Customer & Service Management Platform",
     image: project1,
     description:
-      "A Communication Infrastructure Project with a Strong Entertainment Delivery ComponentA fully functional e-commerce website with features like product listing, shopping cart, and user authentication.",
-    technologies: ["HTML", "CSS", "React", "Node.js", "MongoDB"],
+      "Led end-to-end development of customer-facing and internal enterprise systems, delivering scalable web apps, secure payments, and cloud-native services supporting thousands of users across satellite, media, and telecom domains.",
+    technologies: ["Java", "Spring Boot", "RESTful APIs", "React", "MySQL"],
+    link: "https://www.mongolsat.mn",
   },
   {
     title: "Satellite",
