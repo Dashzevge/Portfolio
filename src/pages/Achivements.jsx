@@ -1,9 +1,10 @@
 import {ACHIVEMENTS} from "../constants"
+import aboutImage from '../assets/about.jpg';
 
 const Achivements = () => {
   return (
     <div className="border-b border-neutral-900 pb-4">
-        <h1 className="my-20 text-center text-4xl">Achivements</h1>
+        <h1 className="my-20 text-center text-4xl">Achivements </h1>
         <div>
           {ACHIVEMENTS.map((achivement, index) => (
             <div key={index} className="mb-8 flex flex-map lg:justify-center">
@@ -12,6 +13,14 @@ const Achivements = () => {
                   {achivement.year}
                   </p>
               </div>
+              <div className="w-full lg:w-1/4">
+                <img
+                  src={aboutImage}
+                  alt={achivement.role}
+                  className="h-16 w-16 rounded-full border border-neutral-800 justify-center"
+                />
+              </div>
+
               <div className="w-full max-w-xl lg:w-3/4">
                 <h6 className="mb-2 font-semibold">
                     {achivement.role} -{" "}

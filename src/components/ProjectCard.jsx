@@ -1,5 +1,6 @@
 import React from 'react'
 
+// eslint-disable-next-line react/prop-types
 const ProjectCard = ({ project }) => {
   return (
     <div className='mb-8 flex flex-wrap lg:justify-center'>

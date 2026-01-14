@@ -1,72 +1,196 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Link, useLocation } from "react-router-dom";
 import { FiDownload, FiMenu, FiX } from "react-icons/fi";
 import SocialLinks from "./SocialLinks";
+import ShootingStar from "./ShootingStar";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  const navRef = useRef(null);
+
+  const links = useMemo(
+    () => [
+      { to: "/", label: "Home" },
+      { to: "/skills", label: "Skills" },
+      { to: "/achivements", label: "Achievements" },
+      { to: "/projects", label: "Projects" },
+    ],
+    []
+  );
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") setIsOpen(false);
+    };
+
+    const handleClickOutside = (event) => {
+      if (!navRef.current) return;
+      if (navRef.current.contains(event.target)) return;
+      setIsOpen(false);
+    };
+
+    if (isOpen) {
+      document.addEventListener("keydown", handleKeyDown);
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
+
+  const isActive = (path) => location.pathname === path;
 
   return (
-    <nav className="mb-10 border-b border-neutral-800 pb-4">
-      <div className="flex items-center justify-between py-4 px-4 md:px-8">
+    <nav
+      ref={navRef}
+      className="
+        mb-10 border-b border-cyan-400/20 pb-4
+        relative overflow-hidden
+        bg-gradient-to-r from-neutral-950/80 via-neutral-900/60 to-neutral-950/80
+        backdrop-blur
+      "
+    >
+      {/* Shooting Stars */}
+      {Array.from({ length: 3 }).map((_, i) => (
+        <ShootingStar key={i} />
+      ))}
+
+      <div className="flex items-center justify-between py-4 px-4 md:px-8 relative z-10">
         {/* Resume Button */}
-        <a
+        <motion.a
           href="/Dash Bumchin.pdf"
           download
-          className="inline-flex items-center gap-2 rounded-lg border border-cyan-400 px-3 py-2 text-sm font-semibold text-cyan-300 hover:bg-cyan-400 hover:text-neutral-900 transition-colors"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.98 }}
+          className="
+            fixed bottom-6 right-6 z-50
+            inline-flex items-center gap-2
+            rounded-lg border border-cyan-400/60
+            px-4 py-2 text-sm font-semibold
+            text-cyan-300
+            bg-neutral-900/80 backdrop-blur
+            hover:bg-cyan-400 hover:text-neutral-900
+            transition-colors focus-visible:outline-none
+            focus-visible:ring-2 focus-visible:ring-cyan-300/70
+          "
+          aria-label="Download resume"
         >
           Resume <FiDownload className="text-lg" />
-        </a>
+        </motion.a>
 
-        {/* Hamburger Menu for Mobile */}
+        {/* Hamburger Menu */}
         <div className="md:hidden">
-          <button onClick={() => setIsOpen(!isOpen)} className="text-2xl text-cyan-300">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="
+              text-2xl text-cyan-300
+              rounded-md p-2
+              hover:bg-cyan-400/10
+              focus-visible:outline-none
+              focus-visible:ring-2 focus-visible:ring-cyan-300/70
+            "
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isOpen}
+            aria-controls="mobile-nav"
+          >
             {isOpen ? <FiX /> : <FiMenu />}
           </button>
         </div>
 
-        {/* Navigation Links */}
+        {/* Links */}
         <div className="hidden md:flex items-center space-x-6">
-          <Link to="/" className="text-lg font-semibold hover:text-cyan-300">
-            Home
-          </Link>
-          <Link to="/achivements" className="text-lg font-semibold hover:text-cyan-300">
-            Achievements
-          </Link>
-          <Link to="/projects" className="text-lg font-semibold hover:text-cyan-300">
-            Projects
-          </Link>
-          <Link to="/skills" className="text-lg font-semibold hover:text-cyan-300">
-            Skills
-          </Link>
+          {links.map((link) => {
+            const active = isActive(link.to);
+            return (
+              <Link
+                key={link.to}
+                to={link.to}
+                className={[
+                  "text-lg font-semibold transition-colors",
+                  "hover:text-cyan-300 focus-visible:outline-none",
+                  "focus-visible:ring-2 focus-visible:ring-cyan-300/70 rounded-sm px-1",
+                  active ? "text-cyan-300" : "text-neutral-200",
+                ].join(" ")}
+                aria-current={active ? "page" : undefined}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </div>
 
-        {/* Social Links */}
+        {/* Social */}
         <div className="hidden md:flex items-center gap-4 text-2xl">
           <SocialLinks />
         </div>
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div className="flex flex-col items-start space-y-4 px-4 pt-4 md:hidden">
-          <Link to="/" onClick={() => setIsOpen(false)} className="text-lg font-semibold hover:text-cyan-300">
-            Home
-          </Link>
-          <Link to="/achivements" onClick={() => setIsOpen(false)} className="text-lg font-semibold hover:text-cyan-300">
-            Achievements
-          </Link>
-          <Link to="/projects" onClick={() => setIsOpen(false)} className="text-lg font-semibold hover:text-cyan-300">
-            Projects
-          </Link>
-          <Link to="/skills" onClick={() => setIsOpen(false)} className="text-lg font-semibold hover:text-cyan-300">
-            Skills
-          </Link>
-          <div className="mt-4 flex gap-4 text-2xl">
-            <SocialLinks />
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            id="mobile-nav"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="
+              md:hidden relative z-10 overflow-hidden
+              bg-neutral-950/60 backdrop-blur
+              border-t border-cyan-400/20
+            "
+          >
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: { opacity: 0, y: -8 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { staggerChildren: 0.06 },
+                },
+              }}
+              className="flex flex-col items-start space-y-4 px-4 pt-4 pb-6"
+            >
+              {links.map((link) => {
+                const active = isActive(link.to);
+                return (
+                  <motion.div
+                    key={link.to}
+                    variants={{ hidden: { opacity: 0, y: -6 }, visible: { opacity: 1, y: 0 } }}
+                  >
+                    <Link
+                      to={link.to}
+                      onClick={() => setIsOpen(false)}
+                      className={[
+                        "text-lg font-semibold transition-colors",
+                        "hover:text-cyan-300 focus-visible:outline-none",
+                        "focus-visible:ring-2 focus-visible:ring-cyan-300/70 rounded-sm px-1",
+                        active ? "text-cyan-300" : "text-neutral-200",
+                      ].join(" ")}
+                      aria-current={active ? "page" : undefined}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                );
+              })}
+
+              <motion.div
+                variants={{ hidden: { opacity: 0, y: -6 }, visible: { opacity: 1, y: 0 } }}
+                className="mt-4 flex gap-4 text-2xl"
+              >
+                <SocialLinks />
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };
