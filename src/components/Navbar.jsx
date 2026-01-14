@@ -14,7 +14,7 @@ const Navbar = () => {
     () => [
       { to: "/", label: "Home" },
       { to: "/skills", label: "Skills" },
-      { to: "/achivements", label: "Achievements" },
+      { to: "/achievements", label: "Achievements" },
       { to: "/projects", label: "Projects" },
     ],
     []
@@ -59,29 +59,7 @@ const Navbar = () => {
         <ShootingStar key={i} />
       ))}
 
-      <div className="flex items-center justify-between py-4 px-4 md:px-8 relative z-10">
-        {/* Resume Button */}
-        <motion.a
-          href="/Dash Bumchin.pdf"
-          download
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.98 }}
-          className="
-            fixed bottom-6 right-6 z-50
-            inline-flex items-center gap-2
-            rounded-lg border border-cyan-400/60
-            px-4 py-2 text-sm font-semibold
-            text-cyan-300
-            bg-neutral-900/80 backdrop-blur
-            hover:bg-cyan-400 hover:text-neutral-900
-            transition-colors focus-visible:outline-none
-            focus-visible:ring-2 focus-visible:ring-cyan-300/70
-          "
-          aria-label="Download resume"
-        >
-          Resume <FiDownload className="text-lg" />
-        </motion.a>
-
+      <div className="flex items-center justify-between py-6 px-6 md:px-12 relative z-10">
         {/* Hamburger Menu */}
         <div className="md:hidden">
           <button
@@ -123,9 +101,30 @@ const Navbar = () => {
           })}
         </div>
 
-        {/* Social */}
-        <div className="hidden md:flex items-center gap-4 text-2xl">
-          <SocialLinks />
+        {/* Social + Resume */}
+        <div className="hidden md:flex items-center gap-4">
+          <div className="text-2xl">
+            <SocialLinks />
+          </div>
+          <motion.a
+            href="/Dash Bumchin.pdf"
+            download
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+            className="
+              inline-flex items-center gap-2
+              rounded-lg border border-cyan-400/60
+              px-4 py-2 text-sm font-semibold
+              text-cyan-300
+              bg-neutral-900/80 backdrop-blur
+              hover:bg-cyan-400 hover:text-neutral-900
+              transition-colors focus-visible:outline-none
+              focus-visible:ring-2 focus-visible:ring-cyan-300/70
+            "
+            aria-label="Download resume"
+          >
+            Resume <FiDownload className="text-lg" />
+          </motion.a>
         </div>
       </div>
 
@@ -183,9 +182,30 @@ const Navbar = () => {
 
               <motion.div
                 variants={{ hidden: { opacity: 0, y: -6 }, visible: { opacity: 1, y: 0 } }}
-                className="mt-4 flex gap-4 text-2xl"
+                className="mt-4 flex items-center gap-4"
               >
-                <SocialLinks />
+                <div className="text-2xl">
+                  <SocialLinks />
+                </div>
+                <motion.a
+                  href="/Dash Bumchin.pdf"
+                  download
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="
+                    inline-flex items-center gap-2
+                    rounded-lg border border-cyan-400/60
+                    px-4 py-2 text-sm font-semibold
+                    text-cyan-300
+                    bg-neutral-900/80 backdrop-blur
+                    hover:bg-cyan-400 hover:text-neutral-900
+                    transition-colors focus-visible:outline-none
+                    focus-visible:ring-2 focus-visible:ring-cyan-300/70
+                  "
+                  aria-label="Download resume"
+                >
+                  Resume <FiDownload className="text-lg" />
+                </motion.a>
               </motion.div>
             </motion.div>
           </motion.div>

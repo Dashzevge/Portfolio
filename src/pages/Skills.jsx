@@ -1,9 +1,7 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import Skill from "../components/Skill";
-import { SKILLS } from "../constants/index";
-import { GROUP_NAMES } from "../constants/index";
-
+import { GROUP_NAMES, SKILLS } from "../constants";
 
 const Skills = () => {
   const [search, setSearch] = useState("");

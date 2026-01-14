@@ -1,12 +1,7 @@
-import { useState } from "react";
 import { HERO_CONTENT } from "../constants";
-//import CodingToSatellite from "../components/Space.jsx";
-import RocketLaunchOnScroll from "../components/Rocket.jsx";
-import { motion } from "motion/react";
+import profileImage from "../assets/Profile.png";
 
 const Home = () => {
-  // State for Resume hover
- // const [resumeHovered, setResumeHovered] = useState(false);
 
   return (
     <div className="border-b border-neutral-900 pb-4 lg:mb-35">
@@ -26,10 +21,14 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Right section - Animated SVG */}
+        {/* Right section - Profile image */}
         <div className="w-full lg:w-1/2 lg:p-8">
-          <div style={{ width: 200 }} className="flex justify-center">
-            <RocketLaunchOnScroll />
+          <div className="flex justify-center items-center">
+            <img
+              src={profileImage}
+              alt="Portrait of Dash Bumchin"
+              className="w-[32rem] rounded-3xl border border-neutral-800 object-cover shadow-xl"
+            />
           </div>
         </div>
       </div>

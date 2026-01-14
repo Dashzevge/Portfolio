@@ -1,9 +1,24 @@
+import { useEffect, useMemo, useState } from "react";
 import { motion } from "motion/react";
 
 export default function ShootingStar() {
-  const startX = -50; // start offscreen left
-  const startY = Math.random() * 40; // random Y in navbar
-  const duration = 1 + Math.random() * 1.5; // random speed
+  const startX = -60; // start offscreen left
+  const startY = useMemo(() => Math.random() * 40, []);
+  const duration = useMemo(() => 1 + Math.random() * 1.5, []);
+  const delay = useMemo(() => Math.random() * 4, []);
+  const targetY = useMemo(() => 18 + Math.random() * 20, []);
+  const [targetX, setTargetX] = useState(520);
+
+  useEffect(() => {
+    const updateTarget = () => {
+      const width = window.innerWidth;
+      setTargetX(Math.max(width - 180, 260));
+    };
+
+    updateTarget();
+    window.addEventListener("resize", updateTarget);
+    return () => window.removeEventListener("resize", updateTarget);
+  }, []);
 
   return (
     <motion.div
@@ -11,15 +26,15 @@ export default function ShootingStar() {
       style={{ top: startY, left: startX, filter: 'blur(1px)' }}
       initial={{ x: startX, y: startY, opacity: 0 }}
       animate={{
-        x: [startX, 500],
-        y: [startY, startY + 20], // diagonal
+        x: [startX, targetX],
+        y: [startY, targetY], // diagonal toward resume
         opacity: [0, 1, 0.7, 0], // fade in/out
         scale: [0.3, 1, 0.3], // sparkle effect
       }}
       transition={{
         duration: duration,
         repeat: Infinity,
-        repeatDelay: Math.random() * 5,
+        repeatDelay: delay,
         ease: "easeInOut",
       }}
     >
