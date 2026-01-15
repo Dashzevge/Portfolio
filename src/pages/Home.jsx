@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { HERO_CONTENT } from "../constants";
 import profileImage from "../assets/Profile.png";
 import Rocket from "../components/Rocket";
+import PathMorphing from "../components/MotionChange";  
+
 
 const Home = () => {
   const [showSocial, setShowSocial] = useState(false);
@@ -43,6 +45,9 @@ const Home = () => {
             <p className="my-2 max-w-xl py-6 font-light tracking-tighter">
               {HERO_CONTENT}
             </p>
+            <div className="mt-8">
+              <PathMorphing />
+            </div>
           </div>
         </div>
 
