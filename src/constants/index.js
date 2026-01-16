@@ -4,7 +4,9 @@ import project3 from "../assets/projects/project-3.jpg";
 import project4 from "../assets/projects/project-4.jpg";
 
 import { RiReactjsLine, RiAngularjsLine, RiHtml5Fill, RiCss3Fill, RiBootstrapFill } from 'react-icons/ri'
-import { SiApachekafka, SiAxios, SiBitbucket, SiCucumber, SiDocker, SiGit, SiGithubactions, SiGraphql, SiHibernate, SiJavascript, SiJenkins, SiJira, SiJquery, SiJunit5, SiKubernetes, SiMongodb, SiMongoose, SiMysql, SiPostgresql, SiPostman, SiRedis, SiRedux, SiSelenium, SiSpring, SiSpringsecurity, SiSqlalchemy, SiTypescript } from 'react-icons/si'
+import { SiApachekafka, SiAxios, SiBitbucket, SiCucumber, SiDocker, SiEclipseide, SiGit, SiGithubactions, SiGraphql, SiHibernate, SiIntellijidea, SiJavascript, SiJenkins, SiJira, SiJquery, SiJunit5, SiKubernetes, SiMongodb, SiMongoose, SiMysql, SiPostgresql, SiPostman, SiRedis, SiRedux, SiSelenium, SiSpring, SiSpringsecurity, SiSqlalchemy, SiTypescript } from 'react-icons/si'
+import { DiVisualstudio } from 'react-icons/di'
+import { TbBrandVisualStudio } from 'react-icons/tb'
 import { FaNodeJs, FaJava, FaAws } from 'react-icons/fa'
 
 export const HERO_CONTENT = `I am a full stack developer with 8+ years of experience building reliable, scalable, and user-focused web applications. I specialize in modern front end work with Angular and React, and back end development using Java, Node.js, MySQL, PostgreSQL, and MongoDB. I enjoy owning solutions end to end, translating business goals into clean architectures, resilient APIs, and polished interfaces. I thrive in fast moving teams, especially in FinTech and Entertainment, where performance, security, and UX matter most.`;
@@ -16,6 +18,7 @@ export const GROUP_NAMES = [
   "Database",
   "DevOps",
   "Cloud & Tools",
+  "IDEs",
 ];
 
 // Updated group names in SKILLS
@@ -304,6 +307,40 @@ export const SKILLS = [
     years: 3,
     description: 'Tested and documented APIs with Postman',
     group: 'Cloud & Tools'
+  },
+
+  // IDEs & Editors
+  {
+    Icon: DiVisualstudio,
+    color: 'text-purple-500',
+    label: 'Visual Studio 2019',
+    years: 5,
+    description: 'Built and debugged enterprise applications in Visual Studio',
+    group: 'IDEs'
+  },
+  {
+    Icon: TbBrandVisualStudio,
+    color: 'text-blue-400',
+    label: 'Visual Studio Code',
+    years: 6,
+    description: 'Primary editor for JavaScript, TypeScript, and tooling',
+    group: 'IDEs'
+  },
+  {
+    Icon: SiIntellijidea,
+    color: 'text-red-500',
+    label: 'IntelliJ IDEA',
+    years: 5,
+    description: 'Developed Java and Spring applications with IDEA',
+    group: 'IDEs'
+  },
+  {
+    Icon: SiEclipseide,
+    color: 'text-indigo-500',
+    label: 'Eclipse',
+    years: 4,
+    description: 'Maintained Java projects and legacy build setups',
+    group: 'IDEs'
   },
 
   // Project Management & SDLC Tools

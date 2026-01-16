@@ -40,7 +40,7 @@ const Skills = () => {
         >
           <h1 className="text-center text-4xl font-semibold text-white">Skills</h1>
           <p className="mt-3 text-center text-sm text-neutral-400">
-            Filter by focus area or search for specific tools, languages, and platforms.
+            Here are specific tools, languages, and platforms I used over past years.
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm">
             <span className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-cyan-200">

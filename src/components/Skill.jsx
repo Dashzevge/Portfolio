@@ -10,7 +10,7 @@ const Skill = ({ Icon, color, label, description, years }) => {
           <p className="text-sm text-neutral-400">{description}</p>
         </div>
       </div>
-      <div className="text-cyan-400 text-xl font-bold animate-pulse">
+      <div className="text-cyan-400 text-xl font-bold">
         {years} yrs
       </div>
     </div>

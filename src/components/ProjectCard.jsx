@@ -1,11 +1,4 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { SKILLS } from "../constants";
-
-const skillIconMap = new Map(
-  SKILLS.map((skill) => [skill.label.toLowerCase(), skill])
-);
-
 // eslint-disable-next-line react/prop-types
 const ProjectCard = ({ project, onOpen }) => {
   return (
@@ -48,41 +41,13 @@ const ProjectCard = ({ project, onOpen }) => {
         </svg>
         <div className="absolute inset-0 flex flex-col justify-between p-6">
           <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-neutral-200/80">
-              Featured
-            </p>
-            <h3 className="mt-3 text-2xl font-semibold text-neutral-100">
+           
+            <h2 className="mt-3 text-2xl font-semibold text-neutral-100">
               {project.title}
-            </h3>
+            </h2>
             <p className="mt-2 text-sm leading-relaxed text-neutral-200/85">
               {project.description}
             </p>
-          </div>
-          <div className="mt-6 flex flex-wrap items-center gap-3 text-xl">
-            {project.technologies.map((tech, index) => {
-              const skill = skillIconMap.get(tech.toLowerCase());
-              if (!skill) return null;
-              const Icon = skill.Icon;
-              return (
-                <motion.span
-                  key={`${tech}-${index}`}
-                  className={`rounded-full border border-neutral-800 bg-neutral-950/70 p-2 ${skill.color}`}
-                  title={tech}
-                  aria-label={tech}
-                  whileHover={{ y: -4, scale: 1.08 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 18 }}
-                  onClick={(event) => event.stopPropagation()}
-                  onKeyDown={(event) => event.stopPropagation()}
-                >
-                  <Link
-                    to={`/skills?search=${encodeURIComponent(skill.label)}`}
-                    onClick={(event) => event.stopPropagation()}
-                  >
-                    <Icon />
-                  </Link>
-                </motion.span>
-              );
-            })}
           </div>
         </div>
       </div>

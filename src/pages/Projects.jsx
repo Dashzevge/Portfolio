@@ -1,10 +1,25 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { PROJECTS } from "../constants";
+import { Link } from "react-router-dom";
+import { PROJECTS, SKILLS } from "../constants";
 import ProjectCard from "../components/ProjectCard";
+
+const skillIconMap = new Map(
+  SKILLS.map((skill) => [skill.label.toLowerCase(), skill])
+);
 
 const Projects = () => {
   const [activeProject, setActiveProject] = useState(null);
+  const modalRef = useRef(null);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  useEffect(() => {
+    if (!activeProject || !modalRef.current) return;
+    modalRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, [activeProject]);
 
   return (
     <section className="border-b border-neutral-900 pb-16">
@@ -34,6 +49,7 @@ const Projects = () => {
       <AnimatePresence>
         {activeProject && (
           <motion.div
+            ref={modalRef}
             className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-950/80 px-6 py-10 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -83,15 +99,35 @@ const Projects = () => {
                       {activeProject.description}
                     </p>
                   </div>
-                  <div className="flex flex-wrap gap-2 text-xs uppercase tracking-[0.2em] text-neutral-500">
-                    {activeProject.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="rounded-full border border-neutral-800 bg-neutral-900/70 px-3 py-1"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                  <div className="flex flex-wrap items-center gap-3 text-xl">
+                    {activeProject.technologies.map((tech, index) => {
+                      const skill = skillIconMap.get(tech.toLowerCase());
+                      if (!skill) {
+                        return (
+                          <span
+                            key={`${tech}-${index}`}
+                            className="rounded-full border border-neutral-800 bg-neutral-900/70 px-3 py-1 text-xs uppercase tracking-[0.2em] text-neutral-500"
+                          >
+                            {tech}
+                          </span>
+                        );
+                      }
+                      const Icon = skill.Icon;
+                      return (
+                        <motion.span
+                          key={`${tech}-${index}`}
+                          className={`rounded-full border border-neutral-800 bg-neutral-950/70 p-2 ${skill.color}`}
+                          title={tech}
+                          aria-label={tech}
+                          whileHover={{ y: -4, scale: 1.08 }}
+                          transition={{ type: "spring", stiffness: 300, damping: 18 }}
+                        >
+                          <Link to={`/skills?search=${encodeURIComponent(skill.label)}`}>
+                            <Icon />
+                          </Link>
+                        </motion.span>
+                      );
+                    })}
                   </div>
                   <div className="flex flex-wrap items-center gap-4">
                     {activeProject.link && (

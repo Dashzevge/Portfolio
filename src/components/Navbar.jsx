@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import { FiDownload, FiMenu, FiX } from "react-icons/fi";
 import ShootingStar from "./ShootingStar";
+import SatelliteLogo from "../assets/Satellite.svg";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,27 +60,40 @@ const Navbar = () => {
       ))}
 
       <div className="flex items-center justify-between py-6 px-6 md:px-12 relative z-10">
-        {/* Hamburger Menu */}
-        <div className="md:hidden">
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="
-              text-2xl text-cyan-300
-              rounded-md p-2
-              hover:bg-cyan-400/10
-              focus-visible:outline-none
-              focus-visible:ring-2 focus-visible:ring-cyan-300/70
-            "
-            aria-label={isOpen ? "Close menu" : "Open menu"}
-            aria-expanded={isOpen}
-            aria-controls="mobile-nav"
+        <div className="flex items-center gap-3">
+          <Link
+            to="/"
+            className="inline-flex items-center"
+            aria-label="Go to home"
           >
-            {isOpen ? <FiX /> : <FiMenu />}
-          </button>
+            <img
+              src={SatelliteLogo}
+              alt="Satellite"
+              className="h-20 w-20 object-contain"
+            />
+          </Link>
+          {/* Hamburger Menu */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="
+                text-2xl text-cyan-300
+                rounded-md p-2
+                hover:bg-cyan-400/10
+                focus-visible:outline-none
+                focus-visible:ring-2 focus-visible:ring-cyan-300/70
+              "
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
+              aria-controls="mobile-nav"
+            >
+              {isOpen ? <FiX /> : <FiMenu />}
+            </button>
+          </div>
         </div>
 
         {/* Links */}
-        <div className="hidden md:flex items-center space-x-6">
+        <div className="hidden md:flex items-center space-x-6 md:absolute md:left-1/2 md:-translate-x-1/2">
           {links.map((link) => {
             const active = isActive(link.to);
             return (
@@ -101,7 +115,7 @@ const Navbar = () => {
         </div>
 
         {/* Resume */}
-        <div className="hidden md:flex items-center">
+        <div className="hidden md:flex items-center ml-auto">
           <motion.a
             href="/Dash Bumchin.pdf"
             download
