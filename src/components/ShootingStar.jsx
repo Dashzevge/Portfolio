@@ -1,10 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "motion/react";
 
-export default function ShootingStar() {
+export default function ShootingStar({ speedMultiplier = 1 }) {
   const startX = -60; // start offscreen left
   const startY = useMemo(() => Math.random() * 40, []);
-  const duration = useMemo(() => 1 + Math.random() * 1.5, []);
+  const duration = useMemo(
+    () => (1 + Math.random() * 1.5) * speedMultiplier,
+    [speedMultiplier]
+  );
   const delay = useMemo(() => Math.random() * 4, []);
   const targetY = useMemo(() => 18 + Math.random() * 20, []);
   const [targetX, setTargetX] = useState(520);

@@ -48,15 +48,14 @@ const Navbar = () => {
     <nav
       ref={navRef}
       className="
-        mb-10 border-b border-cyan-400/20 pb-4
+        mb-10 pb-4
         relative overflow-hidden
-        bg-gradient-to-r from-neutral-950/80 via-neutral-900/60 to-neutral-950/80
-        backdrop-blur
+        bg-transparent
       "
     >
       {/* Shooting Stars */}
       {Array.from({ length: 3 }).map((_, i) => (
-        <ShootingStar key={i} />
+        <ShootingStar key={i} speedMultiplier={1.3} />
       ))}
 
       <div className="flex items-center justify-between py-6 px-6 md:px-12 relative z-10">

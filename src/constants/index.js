@@ -9,7 +9,9 @@ import { DiVisualstudio } from 'react-icons/di'
 import { TbBrandVisualStudio } from 'react-icons/tb'
 import { FaNodeJs, FaJava, FaAws } from 'react-icons/fa'
 
-export const HERO_CONTENT = `I am a full stack developer with 8+ years of experience building reliable, scalable, and user-focused web applications. I specialize in modern front end work with Angular and React, and back end development using Java, Node.js, MySQL, PostgreSQL, and MongoDB. I enjoy owning solutions end to end, translating business goals into clean architectures, resilient APIs, and polished interfaces. I thrive in fast moving teams, especially in FinTech and Entertainment, where performance, security, and UX matter most.`;
+export const HERO_CONTENT = `I’m a Full Stack Developer with over 8 years of experience building reliable, scalable, and user-focused web applications. I specialize in modern frontend development with Angular and React, and backend systems using Java, Node.js, MySQL, PostgreSQL, and MongoDB.
+
+I enjoy owning solutions end-to-end—turning business goals into clean architectures, resilient APIs, and polished user experiences. I thrive in fast-moving teams, particularly in FinTech and Entertainment, where performance, security, and great UX truly matter.`;
 
 export const GROUP_NAMES = [
   "All",
