@@ -14,18 +14,23 @@ const App = () => {
         bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
         ></div>
       </div>
-      <div className="container mx-auto px-8">
-        <div>
-          <nav>
-            <Navbar />
-          </nav>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/achievements" element={<Achievements />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/skills" element={<Skills />} />
-          </Routes>
-        </div>
+      <div className="w-full">
+        <nav>
+          <Navbar />
+        </nav>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <div className="container mx-auto px-8">
+                <Home />
+              </div>
+            }
+          />
+          <Route path="/achievements" element={<Achievements />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/skills" element={<Skills />} />
+        </Routes>
       </div>
     </div>
   );

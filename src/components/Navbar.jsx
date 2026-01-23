@@ -4,6 +4,9 @@ import { Link, useLocation } from "react-router-dom";
 import { FiDownload, FiMenu, FiX } from "react-icons/fi";
 import ShootingStar from "./ShootingStar";
 import SatelliteLogo from "../assets/Satellite.svg";
+import skillsBackground from "../assets/projects/project-1.jpg";
+import achievementsBackground from "../assets/projects/project-2.jpg";
+import projectsBackground from "../assets/projects/project-3.jpg";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,6 +47,27 @@ const Navbar = () => {
 
   const isActive = (path) => location.pathname === path;
 
+  const navBackgroundMap = useMemo(
+    () => ({
+      "/skills": skillsBackground,
+      "/achievements": achievementsBackground,
+      "/projects": projectsBackground,
+    }),
+    []
+  );
+
+  const navTitleMap = useMemo(
+    () => ({
+      "/skills": "Skills",
+      "/achievements": "Achievements",
+      "/projects": "Projects",
+    }),
+    []
+  );
+
+  const navBackground = navBackgroundMap[location.pathname];
+  const navTitle = navTitleMap[location.pathname];
+
   return (
     <nav
       ref={navRef}
@@ -53,170 +77,191 @@ const Navbar = () => {
         bg-transparent
       "
     >
-      {/* Shooting Stars */}
-      {Array.from({ length: 3 }).map((_, i) => (
-        <ShootingStar key={i} speedMultiplier={1.3} />
-      ))}
-
-      <div className="flex items-center justify-between py-6 px-6 md:px-12 relative z-10">
-        <div className="flex items-center gap-3">
-          <Link
-            to="/"
-            className="inline-flex items-center"
-            aria-label="Go to home"
-          >
-            <img
-              src={SatelliteLogo}
-              alt="Satellite"
-              className="h-20 w-20 object-contain"
+      <div className={navBackground ? "relative" : ""}>
+        {navBackground && (
+          <>
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: `url(${navBackground})` }}
             />
-          </Link>
-          {/* Hamburger Menu */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
+            <div className="absolute inset-0 bg-neutral-950/60" />
+          </>
+        )}
+
+        {/* Shooting Stars */}
+        {Array.from({ length: 3 }).map((_, i) => (
+          <ShootingStar key={i} speedMultiplier={1.3} />
+        ))}
+
+        <div className="flex items-center justify-between py-6 px-6 md:px-12 relative z-10">
+          <div className="flex items-center gap-3">
+            <Link
+              to="/"
+              className="inline-flex items-center"
+              aria-label="Go to home"
+            >
+              <img
+                src={SatelliteLogo}
+                alt="Satellite"
+                className="h-20 w-20 object-contain"
+              />
+            </Link>
+            {/* Hamburger Menu */}
+            <div className="md:hidden">
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="
+                  text-2xl text-cyan-300
+                  rounded-md p-2
+                  hover:bg-cyan-400/10
+                  focus-visible:outline-none
+                  focus-visible:ring-2 focus-visible:ring-cyan-300/70
+                "
+                aria-label={isOpen ? "Close menu" : "Open menu"}
+                aria-expanded={isOpen}
+                aria-controls="mobile-nav"
+              >
+                {isOpen ? <FiX /> : <FiMenu />}
+              </button>
+            </div>
+          </div>
+
+          {/* Links */}
+          <div className="hidden md:flex items-center space-x-6 md:absolute md:left-1/2 md:-translate-x-1/2">
+            {links.map((link) => {
+              const active = isActive(link.to);
+              return (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  className={[
+                    "text-lg font-semibold transition-colors",
+                    "hover:text-cyan-300 focus-visible:outline-none",
+                    "focus-visible:ring-2 focus-visible:ring-cyan-300/70 rounded-sm px-1",
+                    active ? "text-cyan-300" : "text-neutral-200",
+                  ].join(" ")}
+                  aria-current={active ? "page" : undefined}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Resume */}
+          <div className="hidden md:flex items-center ml-auto">
+            <motion.a
+              href="/Dash Bumchin.pdf"
+              download
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
               className="
-                text-2xl text-cyan-300
-                rounded-md p-2
-                hover:bg-cyan-400/10
-                focus-visible:outline-none
+                inline-flex items-center gap-2
+                rounded-lg border border-cyan-400/60
+                px-4 py-2 text-sm font-semibold
+                text-cyan-300
+                bg-neutral-900/80 backdrop-blur
+                hover:bg-cyan-400 hover:text-neutral-900
+                transition-colors focus-visible:outline-none
                 focus-visible:ring-2 focus-visible:ring-cyan-300/70
               "
-              aria-label={isOpen ? "Close menu" : "Open menu"}
-              aria-expanded={isOpen}
-              aria-controls="mobile-nav"
+              aria-label="Download resume"
             >
-              {isOpen ? <FiX /> : <FiMenu />}
-            </button>
+              Resume <FiDownload className="text-lg" />
+            </motion.a>
           </div>
         </div>
 
-        {/* Links */}
-        <div className="hidden md:flex items-center space-x-6 md:absolute md:left-1/2 md:-translate-x-1/2">
-          {links.map((link) => {
-            const active = isActive(link.to);
-            return (
-              <Link
-                key={link.to}
-                to={link.to}
-                className={[
-                  "text-lg font-semibold transition-colors",
-                  "hover:text-cyan-300 focus-visible:outline-none",
-                  "focus-visible:ring-2 focus-visible:ring-cyan-300/70 rounded-sm px-1",
-                  active ? "text-cyan-300" : "text-neutral-200",
-                ].join(" ")}
-                aria-current={active ? "page" : undefined}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
-        </div>
-
-        {/* Resume */}
-        <div className="hidden md:flex items-center ml-auto">
-          <motion.a
-            href="/Dash Bumchin.pdf"
-            download
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
-            className="
-              inline-flex items-center gap-2
-              rounded-lg border border-cyan-400/60
-              px-4 py-2 text-sm font-semibold
-              text-cyan-300
-              bg-neutral-900/80 backdrop-blur
-              hover:bg-cyan-400 hover:text-neutral-900
-              transition-colors focus-visible:outline-none
-              focus-visible:ring-2 focus-visible:ring-cyan-300/70
-            "
-            aria-label="Download resume"
-          >
-            Resume <FiDownload className="text-lg" />
-          </motion.a>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            id="mobile-nav"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="
-              md:hidden relative z-10 overflow-hidden
-              bg-neutral-950/60 backdrop-blur
-              border-t border-cyan-400/20
-            "
-          >
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isOpen && (
             <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={{
-                hidden: { opacity: 0, y: -8 },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { staggerChildren: 0.06 },
-                },
-              }}
-              className="flex flex-col items-start space-y-4 px-4 pt-4 pb-6"
+              id="mobile-nav"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="
+                md:hidden relative z-10 overflow-hidden
+                bg-neutral-950/60 backdrop-blur
+                border-t border-cyan-400/20
+              "
             >
-              {links.map((link) => {
-                const active = isActive(link.to);
-                return (
-                  <motion.div
-                    key={link.to}
-                    variants={{ hidden: { opacity: 0, y: -6 }, visible: { opacity: 1, y: 0 } }}
-                  >
-                    <Link
-                      to={link.to}
-                      onClick={() => setIsOpen(false)}
-                      className={[
-                        "text-lg font-semibold transition-colors",
-                        "hover:text-cyan-300 focus-visible:outline-none",
-                        "focus-visible:ring-2 focus-visible:ring-cyan-300/70 rounded-sm px-1",
-                        active ? "text-cyan-300" : "text-neutral-200",
-                      ].join(" ")}
-                      aria-current={active ? "page" : undefined}
-                    >
-                      {link.label}
-                    </Link>
-                  </motion.div>
-                );
-              })}
-
               <motion.div
-                variants={{ hidden: { opacity: 0, y: -6 }, visible: { opacity: 1, y: 0 } }}
-                className="mt-4 flex items-center gap-4"
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: { opacity: 0, y: -8 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: { staggerChildren: 0.06 },
+                  },
+                }}
+                className="flex flex-col items-start space-y-4 px-4 pt-4 pb-6"
               >
-                <motion.a
-                  href="/Dash Bumchin.pdf"
-                  download
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="
-                    inline-flex items-center gap-2
-                    rounded-lg border border-cyan-400/60
-                    px-4 py-2 text-sm font-semibold
-                    text-cyan-300
-                    bg-neutral-900/80 backdrop-blur
-                    hover:bg-cyan-400 hover:text-neutral-900
-                    transition-colors focus-visible:outline-none
-                    focus-visible:ring-2 focus-visible:ring-cyan-300/70
-                  "
-                  aria-label="Download resume"
+                {links.map((link) => {
+                  const active = isActive(link.to);
+                  return (
+                    <motion.div
+                      key={link.to}
+                      variants={{ hidden: { opacity: 0, y: -6 }, visible: { opacity: 1, y: 0 } }}
+                    >
+                      <Link
+                        to={link.to}
+                        onClick={() => setIsOpen(false)}
+                        className={[
+                          "text-lg font-semibold transition-colors",
+                          "hover:text-cyan-300 focus-visible:outline-none",
+                          "focus-visible:ring-2 focus-visible:ring-cyan-300/70 rounded-sm px-1",
+                          active ? "text-cyan-300" : "text-neutral-200",
+                        ].join(" ")}
+                        aria-current={active ? "page" : undefined}
+                      >
+                        {link.label}
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+
+                <motion.div
+                  variants={{ hidden: { opacity: 0, y: -6 }, visible: { opacity: 1, y: 0 } }}
+                  className="mt-4 flex items-center gap-4"
                 >
-                  Resume <FiDownload className="text-lg" />
-                </motion.a>
+                  <motion.a
+                    href="/Dash Bumchin.pdf"
+                    download
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="
+                      inline-flex items-center gap-2
+                      rounded-lg border border-cyan-400/60
+                      px-4 py-2 text-sm font-semibold
+                      text-cyan-300
+                      bg-neutral-900/80 backdrop-blur
+                      hover:bg-cyan-400 hover:text-neutral-900
+                      transition-colors focus-visible:outline-none
+                      focus-visible:ring-2 focus-visible:ring-cyan-300/70
+                    "
+                    aria-label="Download resume"
+                  >
+                    Resume <FiDownload className="text-lg" />
+                  </motion.a>
+                </motion.div>
               </motion.div>
             </motion.div>
-          </motion.div>
+          )}
+        </AnimatePresence>
+        {navBackground && navTitle && (
+          <div className="relative z-10 h-[250px] sm:h-[400px]">
+            <div className="h-full flex max-w-5xl px-5 sm:px-0 pb-4 mx-auto items-end">
+              <h1 className="font-['Futura'] font-bold text-[4em] sm:text-[8em] leading-[0.8em] sm:leading-none text-left lowercase break-words w-full text-white">
+                {navTitle}
+              </h1>
+            </div>
+          </div>
         )}
-      </AnimatePresence>
+      </div>
     </nav>
   );
 };
