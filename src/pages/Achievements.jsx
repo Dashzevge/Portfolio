@@ -21,13 +21,13 @@ const Achievements = () => {
             {ACHIEVEMENTS.slice().reverse().map((achievement, index) => {
               const isLeft = index % 2 === 0;
               return (
-                <div key={index} className="relative pl-10 md:pl-0">
-                  <span className="absolute left-0 top-2 h-6 w-6 rounded-full border border-cyan-400/40 bg-neutral-950 shadow-[0_0_12px_rgba(34,211,238,0.35)] md:left-1/2 md:-translate-x-1/2" />
+                <div key={index} className="relative pl-12 md:pl-0">
+                  <span className="absolute left-1 top-2 h-6 w-6 rounded-full border border-cyan-400/40 bg-neutral-950 shadow-[0_0_12px_rgba(34,211,238,0.35)] md:left-1/2 md:-translate-x-1/2" />
                   <div
                     className={[
                       "rounded-2xl border border-neutral-800 bg-neutral-950/70 p-6 backdrop-blur",
                       "w-full md:w-1/2",
-                      isLeft ? "md:mr-auto md:pr-12" : "md:ml-auto md:pl-12",
+                      isLeft ? "md:mr-auto md:pr-16" : "md:ml-auto md:pl-16",
                     ].join(" ")}
                   >
                     <div className="flex flex-wrap items-center gap-2 text-xs text-neutral-400">

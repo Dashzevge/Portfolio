@@ -93,7 +93,7 @@ const Navbar = () => {
           <ShootingStar key={i} speedMultiplier={1.3} />
         ))}
 
-        <div className="flex items-center justify-between py-6 px-6 md:px-12 relative z-10">
+        <div className="flex items-center justify-between py-6 px-40 relative z-10">
           <div className="flex items-center gap-3">
             <Link
               to="/"

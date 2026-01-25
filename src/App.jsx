@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import Skills from "./pages/Skills";
 import Achievements from "./pages/Achievements"
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
           <Route path="/projects" element={<Projects />} />
           <Route path="/skills" element={<Skills />} />
         </Routes>
+        <Footer />
       </div>
     </div>
   );

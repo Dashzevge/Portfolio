@@ -67,7 +67,7 @@ const Home = () => {
         </div>
 
         {/* Right section - Profile image */}
-        <div className="w-full lg:w-1/2 lg:p-8">
+        <div className="w-full lg:w-1/2 lg:p-8 flex justify-center items-center">
           <div className="flex justify-center items-center">
             <img
               src={profileImage}
