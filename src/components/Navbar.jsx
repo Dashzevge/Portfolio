@@ -253,7 +253,7 @@ const Navbar = () => {
           )}
         </AnimatePresence>
         {navBackground && navTitle && (
-          <div className="relative z-10 h-[250px] sm:h-[400px]">
+          <div className="relative z-10 h-[200px] sm:h-[300px]">
             <div className="h-full flex max-w-5xl px-5 sm:px-0 pb-4 mx-auto items-end">
               <h1 className="font-['Futura'] font-bold text-[4em] sm:text-[8em] leading-[0.8em] sm:leading-none text-left lowercase break-words w-full text-white">
                 {navTitle}

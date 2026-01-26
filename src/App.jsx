@@ -1,5 +1,5 @@
 import Navbar from "./components/Navbar";
-import { Routes, Route} from 'react-router-dom';
+import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import Skills from "./pages/Skills";
@@ -7,6 +7,9 @@ import Achievements from "./pages/Achievements"
 import Footer from "./components/Footer";
 
 const App = () => {
+  const location = useLocation();
+  const showFooter = location.pathname === "/";
+
   return (
     <div className="overflow-x-hidden text-neutral-300 antialiased selection:bg-cyan-300 selection:text-cyan-900">
       <div className="fixed top-0 -z-10 h-full w-full">
@@ -32,7 +35,7 @@ const App = () => {
           <Route path="/projects" element={<Projects />} />
           <Route path="/skills" element={<Skills />} />
         </Routes>
-        <Footer />
+        {showFooter ? <Footer /> : null}
       </div>
     </div>
   );

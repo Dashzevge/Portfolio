@@ -59,3 +59,20 @@ export default function PathMorphing() {
         </div>
     )
 }
+
+export function MotionIconLink({ href, label, Icon, className }) {
+    return (
+        <motion.a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={label}
+            className="inline-flex items-center justify-center rounded-full border border-cyan-400/30 bg-neutral-900/70 p-2 shadow-md"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.35, ease: "easeInOut" }}
+        >
+            <Icon className={`h-5 w-5 ${className}`} />
+        </motion.a>
+    )
+}

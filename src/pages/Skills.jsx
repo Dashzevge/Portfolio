@@ -30,39 +30,9 @@ const Skills = () => {
 
   return (
     <div className="border-b border-neutral-800 pb-24 px-4 max-w-5xl mx-auto">
-      <div className="relative overflow-hidden rounded-2xl border border-cyan-400/10 bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-950 px-6 py-10 sm:px-10">
-        <div className="pointer-events-none absolute -top-24 right-0 h-64 w-64 rounded-full bg-cyan-500/10 blur-3xl" />
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="relative z-10"
-        >
-          <h1 className="text-center text-4xl font-semibold text-white">Skills</h1>
-          <p className="mt-3 text-center text-sm text-neutral-400">
-            Here are specific tools, languages, and platforms I used over past years.
-          </p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm">
-            <span className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-cyan-200">
-              Showing {filteredSkills.length} of {SKILLS.length}
-            </span>
-            <span className="rounded-full border border-neutral-700 bg-neutral-900 px-3 py-1 text-neutral-300">
-              Group: {group}
-            </span>
-            {showClear && (
-              <button
-                onClick={() => {
-                  setSearch("");
-                  setGroup("All");
-                }}
-                className="rounded-full border border-neutral-700 bg-neutral-900 px-3 py-1 text-neutral-300 hover:border-cyan-400/40 hover:text-cyan-200 transition-colors"
-              >
-                Clear filters
-              </button>
-            )}
-          </div>
-        </motion.div>
-      </div>
+      <p className="mt-3 text-center text-sm text-neutral-400">
+        Here are specific tools, languages, and platforms I used over past years.
+      </p>
 
       <div className="mt-10 mb-6 flex flex-col md:flex-row md:items-center gap-4">
         <div className="w-full md:w-1/2">

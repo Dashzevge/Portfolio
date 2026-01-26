@@ -377,19 +377,27 @@ export const ACHIEVEMENTS = [
     period: "May 2015 - Dec 2016",
     duration: "1 yr 8 mos",
     title: "Junior Software Developer",
-    company: "Ministry of Finance of Mongolia",
+    company: "Ministry of Finance, Mongolia",
     employmentType: "Contract",
-    location: "Chingeltei, Ulaanbaatar, Mongolia",
+    location: "Ulaanbaatar, Mongolia",
     workMode: "On-site",
+    responsibility: [
+      "Implemented internal tools to streamline data entry and reporting workflows.",
+      "Collaborated with senior engineers to maintain existing systems and fix defects.",
+    ],
   },
   {
     period: "Dec 2016 - Mar 2020",
     duration: "3 yrs 4 mos",
     title: "Full Stack Developer",
-    company: "Interactive LLC",
+    company: "Interactive BI LLC",
     employmentType: "Full-time",
     location: "Ulaanbaatar, Mongolia",
     workMode: "On-site",
+    responsibility: [
+      "Built and maintained web applications across front-end and back-end stacks.",
+      "Designed REST APIs and optimized database queries for performance.",
+    ],
   },
   {
     period: "Mar 2020 - Dec 2025",
@@ -397,8 +405,12 @@ export const ACHIEVEMENTS = [
     title: "Senior Full Stack Developer",
     company: "MongolSat Networks LLC",
     employmentType: "Full-time",
-    location: "Chingeltei, Ulaanbaatar, Mongolia",
+    location: "Ulaanbaatar, Mongolia",
     workMode: "Remote",
+    responsibility: [
+      "Led end-to-end development of customer-facing and internal platforms.",
+      "Mentored developers and established engineering best practices.",
+    ],
   }
 ];
 
