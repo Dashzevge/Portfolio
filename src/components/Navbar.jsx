@@ -5,7 +5,7 @@ import { FiDownload, FiMenu, FiX } from "react-icons/fi";
 import ShootingStar from "./ShootingStar";
 import SatelliteLogo from "../assets/Satellite.svg";
 import skillsBackground from "../assets/projects/project-1.jpg";
-import achievementsBackground from "../assets/projects/project-2.jpg";
+import achievementsBackground from "../assets/projects/achievements.jpg";
 import projectsBackground from "../assets/projects/project-3.jpg";
 
 const Navbar = () => {
@@ -93,82 +93,84 @@ const Navbar = () => {
           <ShootingStar key={i} speedMultiplier={1.3} />
         ))}
 
-        <div className="flex items-center justify-between py-6 px-40 relative z-10">
-          <div className="flex items-center gap-3">
-            <Link
-              to="/"
-              className="inline-flex items-center"
-              aria-label="Go to home"
-            >
-              <img
-                src={SatelliteLogo}
-                alt="Satellite"
-                className="h-20 w-20 object-contain"
-              />
-            </Link>
-            {/* Hamburger Menu */}
-            <div className="md:hidden">
-              <button
-                onClick={() => setIsOpen(!isOpen)}
+        <div className="py-10 px-60 relative z-10">
+          <div className="flex flex-1 items-center justify-between">
+            <div className="flex items-center gap-3">
+              <Link
+                to="/"
+                className="inline-flex items-center"
+                aria-label="Go to home"
+              >
+                <img
+                  src={SatelliteLogo}
+                  alt="Satellite"
+                  className="h-12 w-12 object-contain invert"
+                />
+              </Link>
+              {/* Hamburger Menu */}
+              <div className="md:hidden">
+                <button
+                  onClick={() => setIsOpen(!isOpen)}
+                  className="
+                    text-2xl text-cyan-300
+                    rounded-md p-2
+                    hover:bg-cyan-400/10
+                    focus-visible:outline-none
+                    focus-visible:ring-2 focus-visible:ring-cyan-300/70
+                  "
+                  aria-label={isOpen ? "Close menu" : "Open menu"}
+                  aria-expanded={isOpen}
+                  aria-controls="mobile-nav"
+                >
+                  {isOpen ? <FiX /> : <FiMenu />}
+                </button>
+              </div>
+            </div>
+
+            {/* Links */}
+            <div className="hidden md:flex items-center space-x-6">
+              {links.map((link) => {
+                const active = isActive(link.to);
+                return (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    className={[
+                      "text-lg font-semibold transition-colors",
+                      "hover:text-cyan-300 focus-visible:outline-none",
+                      "focus-visible:ring-2 focus-visible:ring-cyan-300/70 rounded-sm px-1",
+                      active ? "text-cyan-300" : "text-neutral-200",
+                    ].join(" ")}
+                    aria-current={active ? "page" : undefined}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* Resume */}
+            <div className="hidden md:flex items-center">
+              <motion.a
+                href="/Dash Bumchin.pdf"
+                download
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
                 className="
-                  text-2xl text-cyan-300
-                  rounded-md p-2
-                  hover:bg-cyan-400/10
-                  focus-visible:outline-none
+                  inline-flex items-center gap-2
+                  rounded-lg border border-cyan-400/60
+                  px-4 py-2 text-sm font-semibold
+                  text-cyan-300
+                  bg-neutral-900/80 backdrop-blur
+                  hover:bg-cyan-400 hover:text-neutral-900
+                  transition-colors focus-visible:outline-none
                   focus-visible:ring-2 focus-visible:ring-cyan-300/70
                 "
-                aria-label={isOpen ? "Close menu" : "Open menu"}
-                aria-expanded={isOpen}
-                aria-controls="mobile-nav"
+                aria-label="Download resume"
               >
-                {isOpen ? <FiX /> : <FiMenu />}
-              </button>
+                Resume <FiDownload className="text-lg" />
+              </motion.a>
             </div>
-          </div>
-
-          {/* Links */}
-          <div className="hidden md:flex items-center space-x-6 md:absolute md:left-1/2 md:-translate-x-1/2">
-            {links.map((link) => {
-              const active = isActive(link.to);
-              return (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  className={[
-                    "text-lg font-semibold transition-colors",
-                    "hover:text-cyan-300 focus-visible:outline-none",
-                    "focus-visible:ring-2 focus-visible:ring-cyan-300/70 rounded-sm px-1",
-                    active ? "text-cyan-300" : "text-neutral-200",
-                  ].join(" ")}
-                  aria-current={active ? "page" : undefined}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-          </div>
-
-          {/* Resume */}
-          <div className="hidden md:flex items-center ml-auto">
-            <motion.a
-              href="/Dash Bumchin.pdf"
-              download
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-              className="
-                inline-flex items-center gap-2
-                rounded-lg border border-cyan-400/60
-                px-4 py-2 text-sm font-semibold
-                text-cyan-300
-                bg-neutral-900/80 backdrop-blur
-                hover:bg-cyan-400 hover:text-neutral-900
-                transition-colors focus-visible:outline-none
-                focus-visible:ring-2 focus-visible:ring-cyan-300/70
-              "
-              aria-label="Download resume"
-            >
-              Resume <FiDownload className="text-lg" />
-            </motion.a>
           </div>
         </div>
 
